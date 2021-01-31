@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath, amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\input{lst.tex}
+
+
+\begin{document}
+\begin{center}
+{{\Large \sc Algorithms and Data Structures 02105+02326}}
+\end{center}
+\rule{\textwidth}{1pt}
+\begin{description}
+\item[Student name and id:] Roar Nind Steffensen (s144107)
+\item[Teaching assistant:] Martin Hemmingsen
+\item[Hand-in for week:] 5
+\end{description}
+\rule{\textwidth}{1pt}
+ 
+\hspace{2 cm}
+
+\begin{lstlisting}[style=mystyle]
+public class algoopg_5{
+
+public String M1(String problem){
+    String answer = "For A to be a heap, each node's children must be " +
+                    "of less value than the parent (assuming it's a max-heap). " +
+                    "This is checked recursively";
+  return answer;
+}
+
+public static boolean M2(int[] A) {
+
+    //This code shifts the first element from index 0 to index 1.
+    int[] array = new int[A.length + 1];
+	
+    for (int i = 0; i < A.length; i++)
+        array[i + 1] = A[i];
+		
+    //Runs the recursive function, checking all parents vs children
+    return check(1, array);
+}
+
+private static boolean checkChild(int i, int[] A) {
+    //This algorithm checks with respective to the child
+
+
+    //If full depth of heap is reached, the path was legal.
+    if (i >= A.length)
+        return true;
+
+    //If the parent is of less value than the child, it is not a heap.
+    //The root cannot be a child.
+    if (A[i / 2] < A[i] && i != 1) 
+        return false;
+    
+    //If the method has not yet returned a value, the current node's predecessors
+    //follow a heap structure. The node's children are checked next.
+    return check(i * 2, A) && check(i * 2 + 1, A);
+
+}
+
+
+\end{lstlisting}
+\end{document}
